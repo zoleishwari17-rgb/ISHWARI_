@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ishwari Zole | Portfolio</title>
+    <!-- Google Fonts for Notebook aesthetic -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Patrick+Hand&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-cream: #FAF7F0;
+            --grid-line: rgba(180, 160, 140, 0.15);
+            --text-dark: #2C2522;
+            --text-muted: #6B5E57;
+            --lavender: #E6E0FA;
+            --dusty-pink: #FAD2E1;
+            --pastel-blue: #D5E1DF;
+            --paper-card: #FFFFFF;
+            --border-sketch: #3E322C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            /* Notebook Grid Background Pattern */
+            background-image: 
+                linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: var(--text-dark);
+            font-family: 'Quicksand', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Caveat', cursive;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .notebook-title {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.5rem;
+            color: #8C6D62;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(250, 247, 240, 0.9);
+            backdrop-filter: blur(5px);
+            border-bottom: 2px dashed var(--border-sketch);
+            z-index: 1000;
+        }
+
+        .nav-logo {
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 750;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-dark);
+            text-decoration: underline wavy var(--lavender);
+        }
+
+        /* Sections General */
+        section {
+            padding: 6rem 8% 4rem 8%;
+            border-bottom: 2px dashed var(--border-sketch);
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 0.2rem;
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '✏️';
+            position: absolute;
+            right: -30px;
+            top: 5px;
+            font-size: 1.2rem;
+        }
+
+        .section-subtitle {
+            font-family: 'Patrick Hand', cursive;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Hero / Home Section */
+        #home {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: center;
+            padding-top: 5rem;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px dashed var(--border-sketch);
+        }
+
+        /* Sticker Button */
+        .sticker-btn {
+            display: inline-block;
+            padding: 0.6rem 1.8rem;
+            background-color: var(--lavender);
+            color: var(--text-dark);
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            border: 2px solid var(--border-sketch);
+            box-shadow: 2px 3px 0px var(--border-sketch);
+            transition: all 0.2s ease;
+        }
+
+        .sticker-btn:hover {
+            transform: translateY(-2px) rotate(-1deg);
+            box-shadow: 3px 5px 0px var(--border-sketch);
+        }
+
+        /* Scrapbook Polaroid Photo Frame */
+        .polaroid-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .polaroid {
+            background: #FFFFFF;
+            padding: 15px 15px 40px 15px;
+            box-shadow: 4px 6px 15px rgba(0,0,0,0.08);
+            border: 2px solid var(--border-sketch);
+            transform: rotate(3deg);
+            transition: transform 0.3s ease;
+            max-width: 280px;
+        }
+
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+
+        .polaroid-caption {
+            text-align: center;
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            margin-top: 10px;
+            color: var(--text-dark);
+        }
+
+        /* Notebook Scrapbook Cards */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: var(--paper-card);
+            border: 2px solid var(--border-sketch);
+            padding: 2rem;
+            border-radius: 4px;
+            box-shadow: 3px 3px 0px var(--border-sketch);
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            width: 60px;
+            height: 15px;
+            background: rgba(230, 224, 250, 0.6);
+            border: 1px dashed var(--border-sketch);
+            transform: rotate(-2deg);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px dashed var(--text-muted);
+            padding-bottom: 0.3rem;
+        }
+
+        .card ul {
+            list-style-type: '📌 ';
+            padding-left: 1.2rem;
+        }
+
+        .card li {
+            margin-bottom: 0.8rem;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .card li strong {
+            color: var(--text-dark);
+        }
+
+        /* Focus Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Skills Tags as Stickers */
+        .skills-container {
+            background: var(--paper-card);
+            border: 2px solid var(--border-sketch);
+            padding: 2rem;
+            border-radius: 4px;
+            box-shadow: 3px 3px 0px var(--border-sketch);
+            max-width: 750px;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background-color: var(--pastel-blue);
+            border: 2px solid var(--border-sketch);
+            padding: 0.4rem 1.2rem;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.1rem;
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            box-shadow: 2px 2px 0px var(--border-sketch);
+        }
+
+        /* Contact Section */
+        .contact-box {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--paper-card);
+            border: 2px solid var(--border-sketch);
+            padding: 2.5rem;
+            box-shadow: 4px 4px 0px var(--border-sketch);
+            border-radius: 4px;
+        }
+
+        .contact-box p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .email-link {
+            font-size: 1.4rem;
+            font-family: 'Caveat', cursive;
+            color: var(--text-dark);
+            text-decoration: none;
+            background: var(--dusty-pink);
+            padding: 0.4rem 1rem;
+            border: 2px dashed var(--border-sketch);
+            border-radius: 10px;
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .email-link:hover {
+            transform: scale(1.05) rotate(1deg);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            color: var(--text-muted);
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.1rem;
+            border-top: 2px dashed var(--border-sketch);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            #home {
+                grid-template-columns: 1fr;
+                text-align: left;
+                gap: 2.5rem;
+            }
+            .hero-content h1 {
+                font-size: 3.2rem;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#home" class="nav-logo">Ishwari Zole ✦</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#focus">Current Focus</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section with Portrait Photo in Polaroid Scrapbook Style -->
+    <section id="home">
+        <div class="hero-content">
+            <div class="notebook-title">✦ Personal Journal & Portfolio</div>
+            <h1>Hi, I am Ishwari.</h1>
+            <p>I like exploring new ideas, challenging my potential, seeing the world through different perspectives. I'm curious to keep growing and hope to build something of my own as an entrepreneur.</p>
+            <a href="#contact" class="sticker-btn">Let's Connect ✉️</a>
+        </div>
+        <div class="polaroid-wrapper">
+            <div class="polaroid">
+                <img src="1000107590.jpg" alt="Ishwari Zole Portrait">
+                <div class="polaroid-caption">Ishwari Zole ✨</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="section-subtitle">My education and academic background</div>
+        
+        <div class="grid-2">
+            <div class="card">
+                <h3>Education Journey</h3>
+                <ul>
+                    <li><strong>2026 – Now:</strong> IIM Bangalore — DBE Digital Business & Entrepreneurship</li>
+                    <li><strong>2024 – 26:</strong> Secondary & Higher Secondary Ashram School, Pimparkane (XI – XII complete)</li>
+                    <li><strong>2012 – 24:</strong> Marutirao Kote Abhinav Public School, Akole (I – X completed)</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Academics</h3>
+                <ul>
+                    <li><strong>Class X (2024):</strong> 89.8%</li>
+                    <li><strong>Class XII (2026):</strong> 60%</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- What I Am Currently Focusing On -->
+    <section id="focus">
+        <h2 class="section-title">Current Focus</h2>
+        <div class="section-subtitle">What I'm currently working on & learning</div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <h3>Exams 📚</h3>
+                <p style="color: var(--text-muted);">I'm focused on improving my class 12 results by studying more consistently and strengthening the topics I found challenging. I'm also preparing for entrance exams such as IPMAT and CUET, with the goal of performing my best this time.</p>
+            </div>
+            <div class="card">
+                <h3>Hackathons 💻</h3>
+                <p style="color: var(--text-muted);">Preparing to take part in hackathons and build creative solutions.</p>
+            </div>
+            <div class="card">
+                <h3>Entrepreneurship 🚀</h3>
+                <p style="color: var(--text-muted);">Learning, researching ideas, and working toward a venture of my own.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="section-subtitle">Things I excel at and enjoy doing</div>
+
+        <div class="skills-container">
+            <h3>Core Strengths</h3>
+            <div class="skills-list">
+                <span class="skill-tag">Poetry Writing ✍️</span>
+                <span class="skill-tag">Versatility in Role-Playing 🎭</span>
+                <span class="skill-tag">Rifle Shooting 🎯</span>
+                <span class="skill-tag">Mathematics 📐</span>
+                <span class="skill-tag">Sketching 🎨</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements">
+        <h2 class="section-title">Achievements</h2>
+        <div class="section-subtitle">Certificates and milestones</div>
+
+        <div class="card" style="max-width: 800px;">
+            <h3>Recognitions & Awards</h3>
+            <ul>
+                <li><strong>5th Place:</strong> State-level drawing competition</li>
+                <li><strong>Gold Medalist:</strong> National Science Olympiad 2023–24</li>
+                <li><strong>Vedic Maths Basic Course:</strong> Completion certificate</li>
+                <li><strong>Vedic Maths Advanced Course:</strong> Completion certificate</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="section-subtitle">Drop a message or reach out</div>
+
+        <div class="contact-box">
+            <p>I am always open to connecting with fellow innovators, creators, and learners!</p>
+            <a href="mailto:ishwarizole@gmail.com" class="email-link">ishwarizole@gmail.com</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Ishwari Zole. Designed with creativity and a notebook aesthetic ✨</p>
+    </footer>
+
+</body>
+</html>
